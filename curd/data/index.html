@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="button" onclick="fetchData()">fetch</button>
+    <button type="button" onclick="addData()">add</button>
+    <button type="button" onclick="updateData()">update</button>
+    <button type="button" onclick="deleteData()">delete</button>
+    <div id="container"></div>
+    <script>
+      const url = "http://localhost:5000/product/";
+      const fetchData = () => {
+        fetch(url)
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      };
+
+      const addData = () => {
+        const data = {
+          id: 8,
+          title: "abc",
+          price: 20,
+        };
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      };
+
+      const updateData = () => {
+        const data = {
+          id: 8,
+          title: "xyz",
+          price: 50,
+        };
+
+        fetch(url + 8, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => {
+            return res.json;
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      };
+
+      const deleteData = () => {
+        fetch(url + 7, {
+          method: "DELETE",
+        });
+      };
+    </script>
+  </body>
+</html>
